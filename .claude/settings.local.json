@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./vendor/bin/sail up:*)",
+      "Bash(sudo service:*)",
+      "Bash(docker:*)"
+    ],
+    "deny": []
+  }
+}

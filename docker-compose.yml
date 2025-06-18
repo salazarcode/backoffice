@@ -1,0 +1,67 @@
+# Guarda este archivo como docker-compose.yml en la raíz de tu proyecto Laravel
+version: "3.8"
+
+services:
+    # Servicio de Laravel usando Bitnami
+    app:
+        image: bitnami/laravel:latest
+        container_name: laravel_app
+        restart: unless-stopped
+        working_dir: /app
+        volumes:
+            - ./:/app
+            - /app/vendor
+            - /app/node_modules
+            - /app/storage
+            - /app/bootstrap/cache
+        environment:
+            - DB_HOST=db
+            - DB_PORT=3306
+            - DB_DATABASE=laravel
+            - DB_USERNAME=laravel
+            - DB_PASSWORD=secret
+        ports:
+            - "8088:8000"
+        entrypoint: ["bash", "/app/docker/docker-entrypoint.sh"]
+        depends_on:
+            - db
+        networks:
+            - laravel
+
+    # Servicio de Base de Datos MySQL
+    db:
+        image: mysql:8.0
+        container_name: laravel_mysql
+        restart: always
+        ports: []
+        environment:
+            MYSQL_ROOT_PASSWORD: rootpassword
+            MYSQL_DATABASE: laravel
+            MYSQL_USER: laravel
+            MYSQL_PASSWORD: secret
+        volumes:
+            - dbdata:/var/lib/mysql
+        networks:
+            - laravel
+
+    # Servicio de phpMyAdmin
+    phpmyadmin:
+        image: phpmyadmin:latest
+        container_name: laravel_phpmyadmin
+        restart: always
+        depends_on:
+            - db
+        ports:
+            - "8081:80"
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+        networks:
+            - laravel
+
+volumes:
+    dbdata:
+
+networks:
+    laravel:
+        driver: bridge
