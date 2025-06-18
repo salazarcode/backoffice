@@ -1,3 +1,50 @@
+# Devices3 - Sistema de Gestión de Usuarios con Laravel, Livewire y Docker
+
+Este proyecto es una aplicación web desarrollada en Laravel 12, orientada a la gestión de usuarios y pensada para servir como base de sistemas administrativos modernos. Incluye autenticación, panel administrativo, operaciones CRUD sobre usuarios y soporte para carga de imágenes de perfil, todo orquestado en un entorno Docker.
+
+## Características principales
+- Gestión completa de usuarios (crear, ver, editar, eliminar)
+- Panel administrativo con interfaz moderna usando Livewire
+- Carga y almacenamiento de imágenes de perfil para usuarios
+- Modals interactivos para confirmación y edición
+- Mensajes de éxito y error en operaciones
+- Acceso protegido por autenticación
+- Pruebas unitarias y de interfaz para operaciones CRUD
+- Despliegue y desarrollo simplificado con Docker Compose
+
+## Librerías y tecnologías implementadas
+- **Laravel 12**: Framework principal
+- **Livewire**: Componentes dinámicos y reactividad en el frontend
+- **Jetstream**: Autenticación y scaffolding
+- **Tailwind CSS**: Estilos modernos y responsivos
+- **Bitnami Laravel Docker Image**: Contenedor base para la app
+- **MySQL**: Base de datos relacional
+- **phpMyAdmin**: Administración visual de la base de datos
+- **PHPUnit**: Pruebas unitarias y de integración
+
+## ¿Qué puedes hacer con esta app?
+- Administrar usuarios desde un panel amigable
+- Subir y visualizar fotos de perfil
+- Confirmar acciones críticas mediante modals
+- Probar la robustez del sistema con tests automatizados
+- Desplegar y desarrollar fácilmente en cualquier entorno compatible con Docker
+
+## Instalación rápida
+1. Clona el repositorio y navega a la carpeta del proyecto
+2. Copia `.env.example` a `.env` y ajusta tus variables
+3. Levanta los servicios con Docker Compose:
+   ```bash
+   docker compose up --build
+   ```
+4. Accede a `http://localhost:8088` y comienza a gestionar usuarios
+
+## Notas adicionales
+- Las imágenes de perfil se almacenan en `storage/app/public/profile-photos` y son accesibles vía `public/storage/profile-photos`.
+- El script `docker/docker-entrypoint.sh` automatiza migraciones, seeders, permisos y symlink de storage.
+- Para desarrollo local, asegúrate de que los permisos de la carpeta `storage` permitan escritura.
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
